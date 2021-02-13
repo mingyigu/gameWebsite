@@ -14,5 +14,6 @@ tests/**/coverage/
 *.ntvs*
 *.njsproj
 *.sln
+*.ts
 public/model2.html
 public/model.html
