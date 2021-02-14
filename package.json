@@ -5,6 +5,8 @@
   "main": "main.js",
   "dependencies": {
     "css-loader": "^5.0.2",
+    "element-ui": "^2.15.0",
+    "file-loader": "^6.2.0",
     "style-loader": "^2.0.0",
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
@@ -14,6 +16,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "devDependencies": {
+    "url-loader": "^4.1.1",
     "webpack-cli": "^3.3.12"
   },
   "scripts": {

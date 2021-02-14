@@ -3,6 +3,7 @@
   <div>
     <h1>{{msg}}</h1>
     <div id="container">
+      <el-button @click="handleReset">重置</el-button>
       <div v-for="(list,i) in Circle.circle" :key="i">
         <div class="line" v-bind:class="[i % 2 == 1 ? 'odd' : 'even']">
           <div v-for="(point,j) in list" :key="j">
@@ -69,15 +70,7 @@ export default {
     }
   },
   mounted() {
-    this.Circle = reset();
-    this.circle = this.Circle.circle;
-    this.cat = this.Circle.cat;
-    setTimeout(() => {
-      let top = this.$refs['5-5'][0].offsetTop;
-      let left = this.$refs['5-5'][0].offsetLeft;
-      this.$refs['cat'].style.left = left;
-      console.log(top,left,'aas')
-    },100)
+    this.handleReset();
     
   },
   methods: {
@@ -87,26 +80,48 @@ export default {
       // console.log(this.circle[i][j]);
       this.Circle.setBarrier(i,j);
       let cat = this.Circle.moveCatWithBFS();
+      let ifsurround = false;
       if(cat) {
         if (this.Circle.isEscape(cat)) {
-            alert("已逃脱");
+            console.log('Ecat',this.Circle.cat)
+            alert('已逃脱')
             return undefined;
         } else {
             this.cat = cat;
         }
       } else {
-        alert("已围住");
-        return undefined;
+        ifsurround = true
       }
       this.$forceUpdate();
       console.log(this.circle[i][j])
+      //获取猫下一步的坐标
       let x = this.cat['x'];
       let y = this.cat['y'];
       console.log(x,y)
       console.log(this.$refs[x + '-' + y][0].offsetTop,this.$refs[x + '-' + y][0].offsetLeft)  
+      //移动猫
       this.$refs['cat'].style.left = this.$refs[x + '-' + y][0].offsetLeft;
       this.$refs['cat'].style.top = this.$refs[x + '-' + y][0].offsetTop;
 
+      //判断是否围住
+      if(ifsurround == true) {
+        setTimeout(() => {
+          alert("已围住");
+        },100)
+        
+      }
+    },
+    handleReset() {
+      this.Circle = reset();
+      this.circle = this.Circle.circle;
+      this.cat = this.Circle.cat;
+      setTimeout(() => {
+        let top = this.$refs['5-5'][0].offsetTop;
+        let left = this.$refs['5-5'][0].offsetLeft;
+        this.$refs['cat'].style.left = left;
+        this.$refs['cat'].style.top = top;
+        console.log(top,left,'aas')
+      },200)
     }
   }
 }
