@@ -81,11 +81,13 @@ export default {
       this.Circle.setBarrier(i,j);
       let cat = this.Circle.moveCatWithBFS();
       let ifsurround = false;
+      let ifescape = false;
       if(cat) {
+        console.log('beforeisEscapefn',cat)
         if (this.Circle.isEscape(cat)) {
-            console.log('Ecat',this.Circle.cat)
-            alert('已逃脱')
-            return undefined;
+            ifescape = true;
+            console.log('Ecat',cat)
+            
         } else {
             this.cat = cat;
         }
@@ -94,22 +96,34 @@ export default {
       }
       this.$forceUpdate();
       console.log(this.circle[i][j])
-      //获取猫下一步的坐标
-      let x = this.cat['x'];
-      let y = this.cat['y'];
-      console.log(x,y)
-      console.log(this.$refs[x + '-' + y][0].offsetTop,this.$refs[x + '-' + y][0].offsetLeft)  
-      //移动猫
-      this.$refs['cat'].style.left = this.$refs[x + '-' + y][0].offsetLeft;
-      this.$refs['cat'].style.top = this.$refs[x + '-' + y][0].offsetTop;
+
+      
 
       //判断是否围住
       if(ifsurround == true) {
         setTimeout(() => {
           alert("已围住");
         },100)
+        return
         
       }
+      //获取猫下一步的坐标
+      let x = cat['x'];
+      let y = cat['y'];
+      console.log(x,y)
+      console.log(this.$refs[x + '-' + y][0].offsetTop,this.$refs[x + '-' + y][0].offsetLeft)  
+      //移动猫
+      this.$refs['cat'].style.left = this.$refs[x + '-' + y][0].offsetLeft;
+      this.$refs['cat'].style.top = this.$refs[x + '-' + y][0].offsetTop;
+
+      //判断是否逃脱
+      if(ifescape == true) {
+        setTimeout(() => {
+          alert('已逃脱')
+        },100)
+        return
+      }
+      
     },
     handleReset() {
       this.Circle = reset();
