@@ -89,11 +89,14 @@ export default {
       let cat = this.Circle.moveCatWithBFS();
       if(cat) {
         if (this.Circle.isEscape(cat)) {
-            console.log("已逃脱");
+            alert("已逃脱");
             return undefined;
         } else {
             this.cat = cat;
         }
+      } else {
+        alert("已围住");
+        return undefined;
       }
       this.$forceUpdate();
       console.log(this.circle[i][j])

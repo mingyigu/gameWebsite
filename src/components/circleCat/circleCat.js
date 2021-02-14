@@ -1,11 +1,13 @@
 import { Circle } from "./circle.js";
+
 let circle;
+
 /**
  * 初始化地图
  */
-function reset() {
-    circle = new Circle();
-    circle.init();
+function reset(size = 11, barrier = 8) {
+    circle = new Circle(size);
+    circle.init(barrier);
     return circle;
 }
 

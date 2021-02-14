@@ -50,6 +50,7 @@ class Circle {
             return false;
         }
     }
+
     // 返回当前点可移动到的所有位置
     availableMove(point) {
         const x = point.x;
@@ -88,6 +89,7 @@ class Circle {
         }
         return fisherYates(res);
     }
+
     // 返回当前点是否可以逃脱
     isEscape(point) {
         const x = point.x;
@@ -99,6 +101,7 @@ class Circle {
             return false;
         }
     }
+
     // 以BFS策略移动猫
     moveCatWithBFS() {
         if (this.isEscape(this.cat)) {
@@ -122,12 +125,10 @@ class Circle {
         let isFind;
         while (queue.length > 0 && !isFind) {
             const p = queue[0];
-            // console.log(p);
             if (this.isEscape(p)) {
                 isFind = p;
                 break;
             }
-            // temp[p.x][p.y] = true;
             queue.shift();
             const arr = this.availableMove(p);
             for (const i of arr) {
