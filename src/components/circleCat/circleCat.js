@@ -11,8 +11,8 @@ function reset() {
 
 /**
  * 设置障碍物
- * @param x 障碍物的横坐标
- * @param y 障碍物的纵坐标
+ * @param x 障碍物的纵坐标
+ * @param y 障碍物的横坐标
  */
 function setBarrier(x, y) {
     circle.setBarrier(x, y);

@@ -34,6 +34,9 @@ class Circle {
         for (let i = 0; i < num; i++) {
             const x = Math.floor(Math.random() * this.length);
             const y = Math.floor(Math.random() * this.length);
+            if (this.cat.x == x && this.cat.y == y) {
+                continue;
+            }
             this.circle[x][y] = false;
         }
     }
@@ -67,20 +70,20 @@ class Circle {
         if (!this.isValid(y + 1) && this.circle[x][y + 1]) {
             res.push(new Point(x, y + 1));
         }
-        if (y % 2 == 0) {
-            if (!this.isValid(x - 1) && !this.isValid(y - 1) && this.circle[x - 1][y - 1]) {
-                res.push(new Point(x - 1, y - 1));
+        if (x % 2 == 1) {
+            if (!this.isValid(x - 1) && !this.isValid(y + 1) && this.circle[x - 1][y + 1]) {
+                res.push(new Point(x - 1, y + 1));
             }
-            if (!this.isValid(x + 1) && !this.isValid(y + 1) && this.circle[x - 1][y + 1]) {
+            if (!this.isValid(x + 1) && !this.isValid(y + 1) && this.circle[x + 1][y + 1]) {
                 res.push(new Point(x + 1, y + 1));
             }
         }
         else {
-            if (!this.isValid(x - 1) && !this.isValid(y + 1) && this.circle[x - 1][y + 1]) {
-                res.push(new Point(x - 1, y + 1));
-            }
             if (!this.isValid(x + 1) && !this.isValid(y - 1) && this.circle[x + 1][y - 1]) {
                 res.push(new Point(x + 1, y - 1));
+            }
+            if (!this.isValid(x - 1) && !this.isValid(y - 1) && this.circle[x - 1][y - 1]) {
+                res.push(new Point(x - 1, y - 1));
             }
         }
         return fisherYates(res);
@@ -128,7 +131,7 @@ class Circle {
             queue.shift();
             const arr = this.availableMove(p);
             for (const i of arr) {
-                if (!temp[i.x][i.y]) {
+                if (!temp[i.x][i.y] && this.circle[i.x][i.y]) {
                     pre[i.x][i.y] = p;
                     queue.push(i);
                     temp[i.x][i.y] = true;
