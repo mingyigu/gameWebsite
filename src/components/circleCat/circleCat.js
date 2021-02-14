@@ -6,6 +6,7 @@ let circle;
 function reset() {
     circle = new Circle();
     circle.init();
+    return circle;
 }
 
 /**

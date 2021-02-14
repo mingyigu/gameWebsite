@@ -7,6 +7,5 @@ const Bar = { template: '<div>bar</div>' }
 export const Routes=[
   { path: '/foo', component: Foo },
   { path: '/bar', component: Bar },
-  {path: '/', name: 'game2', component: game2},
   {path:'/circleCat',name:"circleCat",component:circleCat},
 ]

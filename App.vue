@@ -5,6 +5,9 @@
     <div v-for="item in games" :key="item" @click="handleOpenGame(item)">
       {{item}}
     </div>
+    <router-link to="/circleCat">Go to circleCat</router-link>
+    <router-link to="/">Go to space</router-link>
+    <router-view></router-view>
   </div>
 </template>
 <style scoped>
@@ -25,7 +28,12 @@ export default {
     // 添加相关的事件，可用的事件参照文档=> https://github.com/tinymce/tinymce-vue => All available events
     // 需要什么事件可以自己增加
     handleOpenGame(gameName) {
-      window.open('./src/components/circleCat/index.html', '_blank');
+      const {href} = this.$router.resolve({
+          name: "circleCat",
+          path: 'circleCat'
+      });
+      window.open(href, '_blank');
+      // window.open('./src/components/circleCat/index.html', '_blank');
     }
   }
 }
