@@ -15,7 +15,7 @@ h1 {
   color: red;
 }
 </style>
-<script>
+<script  lang='ts'>
 
 export default {
   data() {
@@ -27,7 +27,7 @@ export default {
   methods: {
     // 添加相关的事件，可用的事件参照文档=> https://github.com/tinymce/tinymce-vue => All available events
     // 需要什么事件可以自己增加
-    handleOpenGame(gameName) {
+    handleOpenGame(gameName:any) {
       const {href} = this.$router.resolve({
           name: "circleCat",
           path: 'circleCat'
